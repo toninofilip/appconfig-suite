@@ -61,6 +61,7 @@ A specialized tool for organizations requiring configuration changes through off
 - **📋 Conditional Access Analysis** - View applied policies and their authentication impact
 
 #### 🧰 Built-in Suite Tools (Available in Both Apps)
+- **Confidential Client Auth Debugger** - Test web applications (confidential clients) with Authorization Code Flow using minimal configuration (only redirect URI addition); supports PKCE, custom APIs, and full token inspection; automatic silent backup enables easy restoration
 - **Token Scope Requester** - Request tokens for Graph or custom APIs with /.default, consent, and tenant authority controls; includes quick GET tester
 - **Raw OAuth Tester** - Run implicit flow without MSAL, generate authorize URLs, validate state/nonce, and inspect tokens
 - **OData Query Builder** - Build Graph OData queries visually, paginate, and export JSON

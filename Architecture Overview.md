@@ -127,6 +127,7 @@ AppConfig² includes comprehensive Azure Marketplace SaaS integration:
 
 ### Backend Functions Detail
 - **`get-token`** - Authentication token management for client credentials flow
+- **`exchange-code`** - Secure server-side authorization code exchange for Confidential Client Auth Debugger
 - **`marketplace-landing`** - Subscription activation from Azure Marketplace
 - **`marketplace-webhook`** - Marketplace event processing (subscribe, unsubscribe, suspend)
 - **Serverless Architecture** - Auto-scaling, pay-per-use, zero idle costs
