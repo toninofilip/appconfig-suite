@@ -58,7 +58,7 @@ A read-only cross-tenant analytics tool for IT managers, security teams, and ten
 
 ## ⭐ AppConfig² Suite Features
 
-### 🌟 Core Capabilities (Both Tools)
+### 🌟 Core Capabilities (AppConfig & AppTesting)
 - **🎫 Authentication Flow Testing** - Test various flows and inspect token responses
 - **🔓 Advanced Token Analysis** - Decode and analyze OAuth/OIDC tokens with detailed claims
 - **📊 Enhanced Dashboard** - Real-time application portfolio metrics and insights
@@ -277,7 +277,7 @@ The AppConfig² Suite follows enterprise security best practices:
 We welcome contributions from the community! Whether you're reporting bugs, suggesting features, or contributing code, please read our [Contributing Guidelines](./CONTRIBUTING.md).
 
 ### Ways to Contribute
-- 🐛 **Report Issues** - Help us identify and fix bugs across both tools
+- 🐛 **Report Issues** - Help us identify and fix bugs across tools
 - 💡 **Suggest Features** - Share ideas for new functionality in either tool
 - 📖 **Improve Documentation** - Help make our comprehensive docs better
 - 🧪 **Beta Testing** - Join our early access program for the complete suite
@@ -314,7 +314,7 @@ This project is proprietary software. All rights reserved. See [LICENSE](./LICEN
 ## 🙏 Acknowledgments
 
 - **Microsoft** for the comprehensive Entra ID and Graph API ecosystem
-- **Early Access Users** for valuable feedback and testing across both tools
+- **Early Access Users** for valuable feedback and testing across tools
 - **Enterprise Partners** for guidance on compliance and organizational requirements
 
 ---
