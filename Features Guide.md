@@ -81,6 +81,68 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 - Service Principal Analysis - Comprehensive service principal information
 - Permission Risk Scoring - Automated risk assessment of application permissions
 
+## 📊 AppDashboard - Tenant Analytics Tool
+
+AppDashboard is a 100% read-only, client-side analytics tool that provides a single pane of glass into every app registration across the Entra ID tenant. No backend, no data storage, no write permissions required. All analysis runs in the browser using delegated Graph API access.
+
+### Six Analytical Dashboards
+
+#### 🏠 1. Tenant Overview
+- **Health Scorecard** — At-risk apps, expired credentials, expiring ≤ 30 days, multi-tenant exposure, apps without owners
+- **9 Metric Cards** — Total, SPA, Web Apps, API/Daemon, SAML, Single-Tenant, Multi-Tenant, With Secrets, With Certificates
+- Searchable paginated app table with display name, App ID, type, audience, and credential counts
+- Click any metric card to instantly filter the app list below
+- One-click CSV export of the filtered app list
+
+#### 🛡️ 2. Security Posture
+- **Scoring Engine** — 0–100 score per app evaluating redirect URI hygiene, implicit flow, sign-in audience, and permission risk
+- **Risk Tiers** — Critical, High, Medium, Low/Healthy
+- 7 metric cards including No Owners and Implicit Grant detection
+- Top 5 Critical Apps panel for immediate attention
+- Per-app security report with every check as pass/fail, impact description, and recommendation
+- CSV export of risk, score, issue count, and failed checks
+
+#### 🎯 3. Attack Surface
+- **Authentication** vectors — Insecure HTTP redirects, wildcard URIs, implicit flow, localhost in production
+- **Credential** vectors — Broad sign-in audience, expired secrets, missing credentials on confidential apps
+- **Privilege** vectors — Excessive permissions (> 20), SPA apps with application-level roles
+- **Exposure** vectors — APIs without Identifier URI, preauthorized apps bypassing consent
+- Severity levels: Critical, High, Medium, Low — with per-app vector detail dialog and CSV export
+
+#### ⏱️ 4. Secrets & Expiry
+- **Expiry Buckets** — Expired, ≤ 7 days, ≤ 30 days, ≤ 90 days, Healthy
+- Smart filters — at-risk only (default), group by app, include service principal credentials
+- Detailed table: Application, Source (App vs. SP), Type (Secret vs. Certificate), Status chip, Days Left, Expiry date
+- Direct Azure Portal link per credential for quick remediation
+- CSV export of all credential records
+
+#### 📈 5. App Lifecycle
+- **11 Metric Cards** — Total Apps, Avg Age, No Owners, Expired Secrets, Expiring ≤ 30d, Multi-Platform, API Integrations, API Providers, Healthy Secrets, Created (7d), Created (30d)
+- **4 Visual Charts** — Age distribution, monthly creation trend, credential health bars, sign-in audience breakdown
+- Per-app detail dialog with created date, age, type, owners, credentials, and redirect URIs
+- CSV export
+
+#### 🔑 6. Permission Inventory
+- **Two View Modes** — By Permission (unique permissions across tenant) and By App (per-app permission profile)
+- **Risk Classification** — Critical, High, Medium, Low per permission, powered by a built-in known-permissions catalog
+- 6 summary metrics: Unique Permissions, Critical + High Risk, Application Perms, Delegated Perms, Apps With Permissions, Apps With High Risk
+- Drill-down dialogs: per-permission description, risk chip, resource, and consuming apps
+- Per-app: every permission as a color-coded chip
+- Custom API grouping with Entra portal links for unknown resources
+- CSV export adapts to current view mode
+
+### Required Permissions
+
+| Permission | Type | Purpose |
+|---|---|---|
+| `User.Read` | Delegated | Read signed-in user profile |
+| `Application.Read.All` | Delegated | Read all app registrations (read-only) |
+| `openid` | Delegated | OpenID Connect sign-in |
+| `profile` | Delegated | User profile claims |
+| `offline_access` | Delegated | Refresh tokens |
+
+> No write permissions are requested or needed. AppDashboard is strictly read-only with all analysis running client-side in the browser.
+
 ## 📊 Reporting
 
 ### Reporting Capabilities
@@ -110,6 +172,12 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 - Compliance Verification - Verify applications against security policies and standards
 - Incident Response - Quick identification and analysis of security issues
 
+### IT Managers & Tenant Administrators
+- Tenant-Wide Security Visibility - AppDashboard provides full-tenant security posture at a glance
+- Governance Reporting - Exportable CSV reports for compliance reviews and executive briefings
+- Registration Inventory - Complete picture of every app registration, ownership status, and multi-tenant exposure
+- Risk Prioritization - Top critical apps and risk-tiered summaries for actionable triage
+
 ### Support Teams
 - Advanced Troubleshooting - Comprehensive tools for diagnosing authentication issues
 - Configuration Analysis - Deep dive into application configurations
@@ -131,6 +199,14 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 ---
 
 ## 🆕 Recent Enhancements
+
+### AppDashboard - New Tenant Analytics Tool
+- **Six Analytical Dashboards** — Tenant Overview, Security Posture, Attack Surface, Secrets & Expiry, App Lifecycle, and Permission Inventory
+- **Security Scoring Engine** — 0–100 per-app scores with Critical/High/Medium/Low risk tiers
+- **Attack Surface Mapping** — Authentication, Credential, Privilege, and Exposure vector categories
+- **Credential Lifecycle Tracking** — Expiry buckets with direct Azure Portal remediation links
+- **Permission Risk Catalog** — Built-in known-permissions database with risk classification
+- **100% Read-Only & Client-Side** — Zero infrastructure, zero write permissions
 
 ### New Testing Capabilities
 - **Confidential Client Auth Debugger** - Simplified web application testing with full Authorization Code Flow support, PKCE, custom API integration, and comprehensive token inspection; requires only redirect URI addition with automatic silent backup for easy restoration

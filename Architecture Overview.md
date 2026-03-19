@@ -100,7 +100,8 @@ graph TB
 ### Tool Differentiation
 - **AppConfig** - Full management capabilities with automatic backup protection
 - **AppTesting** - Read-only analysis for strict change control environments
-- **Shared Security** - Both tools use identical security architecture
+- **AppDashboard** - Read-only cross-tenant analytics; security posture, credential health, attack surface, and permission risk across all app registrations; fully client-side with zero infrastructure
+- **Shared Security** - All tools use identical security architecture
 - **Flexible Deployment** - Choose tools based on organizational requirements
 
 ## 🌐 Technology Stack
@@ -174,6 +175,7 @@ AppConfig² includes comprehensive Azure Marketplace SaaS integration:
 - **✅ Microsoft Native** - Seamless integration with existing Microsoft infrastructure
 - **✅ Scalable & Reliable** - Designed to grow with your organization
 - **✅ Compliance Ready** - Built-in audit and compliance capabilities
+- **✅ Tenant-Wide Visibility** - AppDashboard provides zero-infrastructure analytics across the entire app registration estate
 
 ### For Development Teams
 - **✅ Modern Technology** - Built with latest web technologies and best practices

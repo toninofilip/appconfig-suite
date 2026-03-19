@@ -9,7 +9,7 @@
 
 ## 🚀 What is AppConfig² Suite?
 
-AppConfig² is a specialized application management suite designed specifically for Microsoft Entra ID application configuration, testing, and troubleshooting. The suite features two specialized tools designed for different organizational needs and compliance requirements. Both tools provide powerful Microsoft Entra ID capabilities while serving distinct use cases.
+AppConfig² is a specialized application management suite designed specifically for Microsoft Entra ID application configuration, testing, troubleshooting, and tenant-wide analytics. The suite features three specialized tools designed for different organizational needs and compliance requirements. All tools provide powerful Microsoft Entra ID capabilities while serving distinct use cases.
 
 ### 🔧 AppConfig - Full Configuration Management
 The complete solution for developers, IT administrators, and security professionals who need full control over application configurations with comprehensive backup and restore capabilities.
@@ -17,31 +17,39 @@ The complete solution for developers, IT administrators, and security profession
 ### 🔍 AppTesting - Read-Only Analysis & Testing
 A specialized tool for organizations requiring configuration changes through official Entra portal only, while maintaining powerful troubleshooting and analysis capabilities.
 
+### 📊 AppDashboard - Tenant Analytics & Security Insights
+A read-only cross-tenant analytics tool for IT managers, security teams, and tenant administrators who need comprehensive visibility across every app registration in the tenant — security posture scoring, attack surface mapping, credential health tracking, and permission risk analysis. 100% client-side, zero infrastructure, zero write permissions.
+
 ---
 
 ## 🎯 Who Is This Suite For?
 
 <table>
 <tr>
-<td align="center" width="25%">
+<td align="center" width="20%">
 <img src="https://img.icons8.com/fluency/48/technical-support.png" alt="Support"/>
 <br/><strong>Level 3 Support</strong>
 <br/>Comprehensive troubleshooting with both read-only and full management options
 </td>
-<td align="center" width="25%">
+<td align="center" width="20%">
 <img src="https://img.icons8.com/fluency/48/code.png" alt="Developers"/>
 <br/><strong>Developers</strong>
 <br/>Test authentication flows with appropriate tool based on environment permissions
 </td>
-<td align="center" width="25%">
+<td align="center" width="20%">
 <img src="https://img.icons8.com/fluency/48/administrator-male.png" alt="Admins"/>
 <br/><strong>IT Administrators</strong>
 <br/>Choose between full management or compliance-ready read-only analysis
 </td>
-<td align="center" width="25%">
+<td align="center" width="20%">
 <img src="https://img.icons8.com/fluency/48/security-shield-green.png" alt="Security"/>
 <br/><strong>Security Engineers</strong>
 <br/>Security analysis tools with appropriate access levels for your organization
+</td>
+<td align="center" width="20%">
+<img src="https://img.icons8.com/fluency/48/manager.png" alt="IT Manager"/>
+<br/><strong>IT Managers</strong>
+<br/>Tenant-wide analytics, security scorecards, and governance reporting via AppDashboard
 </td>
 </tr>
 </table>
@@ -86,6 +94,14 @@ A specialized tool for organizations requiring configuration changes through off
 - **🔒 Safe Operation** - Zero risk of accidental configuration changes
 - **👀 Deep Insights** - All troubleshooting features with read-only access
 
+### 📊 AppDashboard - Tenant Analytics
+- **🏠 Tenant Overview** — Full app registration inventory with health scorecard, 9 metric cards, click-to-filter, and CSV export
+- **🛡️ Security Posture** — Per-app security scores (0–100), risk tiers (Critical/High/Medium/Low), and Top 5 Critical Apps panel
+- **🎯 Attack Surface** — Attack vector mapping across Authentication, Credential, Privilege, and Exposure categories
+- **⏱️ Secrets & Expiry** — Credential lifecycle tracking with expiry buckets and direct Azure Portal remediation links
+- **📈 App Lifecycle** — Age distribution, creation trends, ownership analysis, and 4 visual charts
+- **🔑 Permission Inventory** — Full OAuth2 and app-role catalog with risk classification and by-permission/by-app views
+
 ---
 
 ## 📸 Suite Screenshots
@@ -125,32 +141,37 @@ A specialized tool for organizations requiring configuration changes through off
 flowchart LR
     A[🔐 Sign in with Entra ID] --> B{Choose Your Tool}
 
-    %% Vertically stack tool choices (AppTesting above AppConfig)
     subgraph S[ ]
       direction TB
+      I[📊 AppDashboard - Tenant Analytics]
       D[🔍 AppTesting - Read-Only]
       C[🔧 AppConfig - Full Manage]
     end
     style S fill:transparent,stroke:transparent
 
+    B --> I
     B --> D
     B --> C
 
     %% Paths
+    I --> J[📈 Tenant-Wide Insights]
     D --> F[📊 Analyze & Test]
     C --> E[📊 Configure & Test]
     E --> G[⏪ Restore]
     F --> H[📈 Monitor & Report]
     G --> H
+    J --> H
 
     %% Styling
     style A fill:#e1f5fe
     style B fill:#f3e5f5
     style C fill:#e8f5e8
     style D fill:#fff3e0
+    style I fill:#e8f0fe
     style E fill:#f1f8e9
     style F fill:#fce4ec
     style G fill:#f3e5f5
+    style J fill:#e0f7fa
     style H fill:#e0f2f1
 ```
 
@@ -167,6 +188,14 @@ flowchart LR
 3. **📊 Test** authentication flows without modification risks
 4. **🔍 Analyze** configurations and identify issues
 5. **📈 Report** findings while maintaining compliance
+
+### AppDashboard Workflow
+1. **🔐 Sign in** with your Microsoft Entra ID account
+2. **🏠 View Tenant Overview** — instant inventory of every app registration with health scorecard
+3. **🛡️ Explore Security Posture** — review per-app security scores and risk tiers
+4. **🎯 Map Attack Surface** — identify attack vectors across authentication, credentials, privilege, and exposure
+5. **📊 Analyze Lifecycle & Permissions** — trends, credential health, and permission risk across all apps
+6. **📥 Export** any filtered view as CSV for audits and governance reports
 
 ---
 
@@ -187,6 +216,13 @@ flowchart LR
 - All troubleshooting capabilities
 - Risk-free operation
 - Security and permission analysis
+
+**Need tenant-wide analytics?** → **AppDashboard**
+- Security posture scoring across all apps simultaneously
+- Attack surface mapping across authentication, credential, privilege, and exposure
+- Credential health tracking with expiry buckets
+- Permission risk analysis across the entire tenant
+- 100% read-only, zero infrastructure, fully client-side
 
 ### Quick Start
 1. Get the AppConfig² Suite on Azure Marketplace: <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=AppConfig%C2%B2&page=1" target="_blank" rel="noopener noreferrer">Open Azure Marketplace</a>
