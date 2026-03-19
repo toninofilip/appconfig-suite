@@ -2,7 +2,7 @@
 
 This guide covers features available in the AppConfig² Suite, organized by tool and functionality.
 
-## 🌟 Core Capabilities (Both Apps)
+## 🌟 Core Capabilities (AppConfig & AppTesting)
 
 ### Enhanced Portfolio Dashboard
 - Application Portfolio Overview - Comprehensive view of all applications with key metrics
@@ -31,7 +31,7 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 - Request Templates - Pre-built queries for common scenarios
 - Batch Operations - Execute Graph API calls efficiently (limited to GET method in AppTesting)
 
-### Suite Tools (Available in Both Apps)
+### Suite Tools (AppConfig & AppTesting)
 - **Confidential Client Auth Debugger** - Test web applications (confidential clients) using Authorization Code Flow with PKCE support, custom API integration, and comprehensive token inspection. Requires only adding AppConfig² redirect URI (easily restored via automatic silent backup). Provides step-by-step flow visualization, automatic state/nonce validation, and detailed comparison with SPA flows
 - **Token Scope Requester** - Request tokens for Graph or custom APIs with /.default, consent, and tenant authority controls; includes quick GET tester
 - **Raw OAuth Tester** - Run implicit flow without MSAL, generate authorize URLs, validate state/nonce, and inspect tokens
