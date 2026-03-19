@@ -1,7 +1,7 @@
 # AppConfig² Suite
 
 <div align="center">
-  <img src="https://appconfigapp.toncheetah.com/images/logo-nobackground-5000-orange-grad-wheel.png" alt="AppConfig² Logo" width="200"/>
+  <img src="https://www.appconfig.eu/images/logo-nobackground-5000-orange-grad-wheel.png" alt="AppConfig² Logo" width="200"/>
   <p><strong>Complete Application Management Suite for Microsoft Entra™ ID</strong></p>
 </div>
 
