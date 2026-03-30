@@ -98,11 +98,12 @@ graph TB
 - **SOC 2 Aligned** - Follows Microsoft's security and compliance standards
 
 ### Tool Differentiation
-- **AppConfig** - Full management capabilities with automatic backup protection
-- **AppTesting** - Read-only analysis for strict change control environments
-- **AppDashboard** - Read-only cross-tenant analytics; security posture, credential health, attack surface, and permission risk across all app registrations; fully client-side with zero infrastructure
-- **Shared Security** - All tools use identical security architecture
-- **Flexible Deployment** - Choose tools based on organizational requirements
+- **AppConfig** - Full configuration management with automatic backup protection; primary tool for advanced troubleshooting and testing by L2/L3 support teams and developers
+- **AppTesting** - Strictly read-only analysis and testing; identical troubleshooting capabilities to AppConfig with all write functions disabled; for strict change-control environments
+- **AppDashboard** - Read-only cross-tenant analytics; security posture scoring, attack surface mapping, secrets expiry tracking, credential health, and permission risk across all app registrations; fully client-side with zero infrastructure
+- **AppTooling** - Write-capable Entra ID administration toolkit; nine focused tools for consent management, app role assignments, credential rotation, workload identity federation, claims mapping policies, manifest editing, optional claims configuration, Graph Explorer, and JWT token decoding; fills the gap between Azure Portal UI and scripted automation
+- **Shared Security** - All tools use identical MSAL PKCE authentication architecture and OWASP client-side security controls
+- **Flexible Deployment** - Choose tools based on organizational requirements and access levels
 
 ## 🌐 Technology Stack
 
@@ -176,6 +177,7 @@ AppConfig² includes comprehensive Azure Marketplace SaaS integration:
 - **✅ Scalable & Reliable** - Designed to grow with your organization
 - **✅ Compliance Ready** - Built-in audit and compliance capabilities
 - **✅ Tenant-Wide Visibility** - AppDashboard provides zero-infrastructure analytics across the entire app registration estate
+- **✅ Four Specialized Tools** - AppConfig for advanced troubleshooting, AppTesting for read-only compliance, AppDashboard for tenant security analytics, AppTooling for Entra ID administration
 
 ### For Development Teams
 - **✅ Modern Technology** - Built with latest web technologies and best practices
@@ -188,9 +190,10 @@ AppConfig² includes comprehensive Azure Marketplace SaaS integration:
 - **✅ Minimal Attack Surface** - No secrets storage or persistent data
 - **✅ Comprehensive Auditing** - Complete audit trail for all operations
 - **✅ Microsoft Standards** - Follows Microsoft's enterprise security guidelines
+- **✅ Dedicated Security Analytics** - AppDashboard provides tenant-wide security posture, attack surface mapping, and permission risk analysis without requiring any write permissions
 
 ---
 
-> 🏗️ **Architecture Philosophy**: AppConfig² is built as a secure, Microsoft-native application that enhances your existing Entra ID environment without introducing additional security risks or compliance complexity.
+> 🏗️ **Architecture Philosophy**: AppConfig² is built as a secure, Microsoft-native suite of four purpose-built tools that enhance your existing Entra ID environment without introducing additional security risks or compliance complexity.
 
-> 📋 **Enterprise Ready**: This architecture supports organizations from small teams to large enterprises with hundreds of applications and strict compliance requirements.
+> 📋 **Enterprise Ready**: This architecture supports organizations from small teams to large enterprises with hundreds of applications and strict compliance requirements. L2/L3 support teams use AppConfig and AppTesting for advanced troubleshooting; security and compliance teams use AppDashboard for tenant-wide analytics; Entra ID administrators use AppTooling for privileged operations.

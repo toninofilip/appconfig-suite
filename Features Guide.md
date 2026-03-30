@@ -1,12 +1,11 @@
 # AppConfig² Suite Features Guide
 
-This guide covers features available in the AppConfig² Suite, organized by tool and functionality.
+This guide covers features available in the AppConfig² Suite, organized by tool and functionality. The suite comprises four purpose-built tools: **AppConfig** (full configuration management and advanced troubleshooting), **AppTesting** (strictly read-only analysis and testing), **AppDashboard** (tenant-wide security analytics), and **AppTooling** (Entra ID administration toolkit).
 
 ## 🌟 Core Capabilities (AppConfig & AppTesting)
 
 ### Enhanced Portfolio Dashboard
 - Application Portfolio Overview - Comprehensive view of all applications with key metrics
-- Security Dashboard - Real-time security posture analysis across all applications
 - Interactive Metrics - Clickable cards that filter and navigate to specific applications
 - Export Capabilities - CSV exports for compliance and reporting needs
 
@@ -16,10 +15,9 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 - Claims Inspector - Detailed token claims analysis and validation
 - User Context Testing - Test authentication flows as different users
 
-### Advanced Security Analysis
-- Attack Surface Analysis - Comprehensive vulnerability assessment and attack vector identification
-- Permission Analysis - Detailed API permission review with risk scoring
-- Security Scorecard - Overall security posture with actionable recommendations
+### Permission Review
+- Per-App Permission View - Inspect configured delegated and application permissions for troubleshooting
+- Conditional Access Analysis - View applied policies and their impact on authentication
 
 ### Application Lifecycle Tracking
 - Creation Tracking - Monitor when and how applications were created
@@ -36,7 +34,6 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 - **Token Scope Requester** - Request tokens for Graph or custom APIs with /.default, consent, and tenant authority controls; includes quick GET tester
 - **Raw OAuth Tester** - Run implicit flow without MSAL, generate authorize URLs, validate state/nonce, and inspect tokens
 - **OData Query Builder** - Build Graph OData queries visually, paginate, and export JSON
-- **Secrets & Certificate Expiration Monitor** - Surface expiring/expired secrets and certs (apps/SPs), filter by risk level, and export CSV
 - **Entra Endpoints Explorer** - Comprehensive reference guide for Microsoft Entra ID endpoints across all Azure clouds with multi-cloud support, variable substitution, categorized endpoints (OAuth 2.0/OIDC, Graph, Azure Management, B2C, SAML), one-click copying, and direct links to Microsoft documentation
 - **MSAL Trace Viewer** - Real-time MSAL.js authentication event monitoring and debugging with live event capture grouped by correlation ID, built-in test actions, interaction type filtering, PII redaction toggle, JSON export, and detailed event payload inspection
 - **OIDC Metadata Inspector** - OpenID Connect discovery and JWT validation tool with support for fetching and analyzing OIDC discovery documents, JWKS inspection, JWT decoding with automatic token type detection, signature verification, and key matching.
@@ -64,12 +61,13 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 
 ## 🔍 AppTesting - Read-Only Analysis Tool
 
+> **AppTesting is strictly read-only.** All configuration write functions are disabled. It provides identical testing and troubleshooting capabilities to AppConfig — authentication flow testing, token analysis, permission review, conditional access insights, Graph Explorer integration — without the ability to modify any application settings. Designed for organizations that require all configuration changes to go through the official Entra portal.
+
 ### Comprehensive Testing Without Changes
 - Authentication Flow Testing - Complete OAuth2/OIDC flow validation
 - Token Analysis - Advanced JWT decoding and claims inspection
-- Permission Analysis - Detailed API permission and risk assessment
+- Permission Review - View configured delegated and application permissions for troubleshooting
 - Configuration Review - Read-only access to all application settings
-- Security Analysis - Comprehensive security posture evaluation
 
 ### Compliance-Ready Operation
 - Zero Modification Risk - All configuration change functions disabled
@@ -79,11 +77,11 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 ### Advanced Analysis Capabilities
 - Conditional Access Insights - View applied policies and their impact
 - Service Principal Analysis - Comprehensive service principal information
-- Permission Risk Scoring - Automated risk assessment of application permissions
+- App Role Inspection - View application roles and their assignments (read-only)
 
 ## 📊 AppDashboard - Tenant Analytics Tool
 
-AppDashboard is a 100% read-only, client-side analytics tool that provides a single pane of glass into every app registration across the Entra ID tenant. No backend, no data storage, no write permissions required. All analysis runs in the browser using delegated Graph API access.
+AppDashboard is a 100% read-only, client-side analytics tool that provides a single pane of glass into every app registration across the Entra ID tenant. It is the dedicated home for **security posture scoring, attack surface mapping, secrets expiry tracking, and permission risk analysis** across all tenant apps. No backend, no data storage, no write permissions required. All analysis runs in the browser using delegated Graph API access.
 
 ### Six Analytical Dashboards
 
@@ -143,6 +141,29 @@ AppDashboard is a 100% read-only, client-side analytics tool that provides a sin
 
 > No write permissions are requested or needed. AppDashboard is strictly read-only with all analysis running client-side in the browser.
 
+## 🔨 AppTooling - Entra ID Administration Toolkit
+
+AppTooling is a write-capable browser-based SPA providing nine focused Entra ID management tools. It fills the operational gap between the Azure Portal's form-based UI and scripted automation — for privileged tasks that are too complex for Portal forms yet too infrequent to justify bespoke scripts.
+
+### Nine Focused Tools (Four Administration Areas)
+
+#### Identity & Consent
+- **Consent Manager** - List all OAuth 2.0 delegated permission grants in the tenant; filter by client or resource service principal; revoke individual grants with a confirmation step; distinguishes admin consent (`AllPrincipals`) from user consent (`Principal`) and surfaces the granting user's UPN. Required: `Directory.ReadWrite.All`
+- **AppRole Assignment Manager** - View app role assignments from both the principal's perspective and the resource's perspective; create new assignments by searching for service principals and selecting from their exposed app roles; delete with confirmation. Required: `AppRoleAssignment.ReadWrite.All`
+
+#### Credential Management
+- **Credential & Secret Manager** - Browse all client secrets and certificates across app registrations with colour-coded expiry status (configurable warning threshold); create new secrets with configurable lifetime; new secret values shown exactly once at creation. Required: `Application.ReadWrite.All`
+- **Workload Identity Federation** - Create and manage workload identity federation (WIF) credentials with guided templates for GitHub Actions (branch/environment/PR), Azure DevOps, Kubernetes (service account), and Google Cloud; custom issuers also supported. Required: `Application.ReadWrite.All`
+
+#### Policy & Configuration
+- **Claims Mapping Policy Tool** - Full CRUD for `claimsMappingPolicy` objects with built-in templates covering department, employee ID, job title, extension attributes, group claims, and SAML name identifier; JSON editor with schema validation; assign and unassign policies to service principals. Required: `Policy.ReadWrite.ApplicationConfiguration`
+- **Application Manifest Editor** - Load any app registration manifest in a syntax-highlighted JSON editor; edit and save using Graph’s JSON Merge Patch semantics; diff-detects unsaved changes and prompts before navigation. Required: `Application.ReadWrite.All`
+- **Optional Claims Editor** - Configure `optionalClaims` (ID token, access token, SAML2 token) through a structured UI backed by a curated claim catalog; each claim includes a plain-language description, supported token types, and available `additionalProperties`; changes are diffed against saved state and can be reverted. Required: `Application.ReadWrite.All`
+
+#### Inspection & Debugging
+- **Graph Explorer** - Execute arbitrary Microsoft Graph REST calls (GET/POST/PATCH/DELETE) against v1.0 or beta; auto-detects required scopes per endpoint and triggers just-in-time consent; syntax-highlighted JSON response panel; common endpoint suggestions with scope hints. Scope varies — JIT consent per endpoint
+- **JWT Token Decoder** - Paste any JWT for a fully annotated breakdown; auto-detects token type and validity; Token Summary shows type, expiry, subject, audience, issuer, lifetime, and plain-English scope/app-role summary; Claims tab renders every claim with a colour-coded category dot; Header and Raw JSON tabs also available. Decoding is entirely client-side; no Graph calls are made
+
 ## 📊 Reporting
 
 ### Reporting Capabilities
@@ -150,8 +171,8 @@ AppDashboard is a 100% read-only, client-side analytics tool that provides a sin
 - Dashboard Integration - Embed metrics and reports in custom dashboards
 
 ### Security Reporting
-- Attack Surface Reports - Detailed vulnerability assessment reports
-- Permission Analysis Reports - Comprehensive API permission and risk reports
+- Attack Surface Reports - Detailed attack surface and vulnerability assessment reports available in AppDashboard
+- Permission Analysis Reports - Comprehensive API permission and risk reports available in AppDashboard
 
 ## 🎯 Specialized Use Cases
 
@@ -161,16 +182,17 @@ AppDashboard is a 100% read-only, client-side analytics tool that provides a sin
 - Integration Validation - Test API integrations without production impact
 - Token Debugging - Advanced token analysis and troubleshooting
 
-### IT Operations
+### IT Operations & L2/L3 Support
 - Application Portfolio Management - Centralized view and management of all applications
+- Advanced Troubleshooting - AppConfig and AppTesting replace the Fiddler/Postman/jwt.ms toolchain for diagnosing authentication issues
 - Lifecycle Management - Track application creation, changes, and ownership
-- Security Monitoring - Continuous security posture assessment
+- Credential Management - Secret and certificate rotation via AppTooling
 
 ### Security Teams
-- Security Assessment - Comprehensive security review of application configurations
-- Attack Surface Analysis - Identify and evaluate potential security vulnerabilities
-- Compliance Verification - Verify applications against security policies and standards
-- Incident Response - Quick identification and analysis of security issues
+- Security Assessment - Comprehensive tenant-wide security review via AppDashboard
+- Attack Surface Analysis - Identify and evaluate attack vectors across Authentication, Credential, Privilege, and Exposure categories in AppDashboard
+- Compliance Verification - Verify applications against security policies using AppDashboard security posture scores
+- Consent Governance - Audit and revoke OAuth consent grants via AppTooling
 
 ### IT Managers & Tenant Administrators
 - Tenant-Wide Security Visibility - AppDashboard provides full-tenant security posture at a glance
@@ -178,10 +200,15 @@ AppDashboard is a 100% read-only, client-side analytics tool that provides a sin
 - Registration Inventory - Complete picture of every app registration, ownership status, and multi-tenant exposure
 - Risk Prioritization - Top critical apps and risk-tiered summaries for actionable triage
 
+### Entra ID Admins & Identity Architects
+- Privileged Administration - AppTooling for consent cleanup, credential rotation, and workload identity federation without navigating multiple Azure Portal blades
+- Policy Management - Claims mapping policies and optional claims configuration through guided UI
+- Manifest Management - Application manifest editing with validation and diff detection
+
 ### Support Teams
-- Advanced Troubleshooting - Comprehensive tools for diagnosing authentication issues
+- Advanced Troubleshooting - AppConfig and AppTesting for diagnosing complex authentication issues end-to-end
 - Configuration Analysis - Deep dive into application configurations
-- Issue Resolution - Quick identification and resolution of common issues
+- Issue Resolution - Quick identification and resolution of common authentication and permission issues
 
 ## 📈 Performance & Scalability
 
