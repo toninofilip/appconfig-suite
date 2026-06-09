@@ -83,16 +83,21 @@ This guide covers features available in the AppConfig² Suite, organized by tool
 
 AppDashboard is a 100% read-only, client-side analytics tool that provides a single pane of glass into every app registration across the Entra ID tenant. It is the dedicated home for **security posture scoring, attack surface mapping, secrets expiry tracking, and permission risk analysis** across all tenant apps. No backend, no data storage, no write permissions required. All analysis runs in the browser using delegated Graph API access.
 
-### Six Analytical Dashboards
+### Seven Analytical Dashboards
 
-#### 🏠 1. Tenant Overview
-- **Health Scorecard** — At-risk apps, expired credentials, expiring ≤ 30 days, multi-tenant exposure, apps without owners
+#### 🚨 1. Alerts Overview
+- **6 Action KPI Cards** — Expired credentials, expiring ≤ 7 days, expiring ≤ 30 days, critical attack vectors, critical security risk apps, and implicit grant enabled apps
+- Click any KPI card to jump directly into the relevant dashboard view with filters pre-applied
+- Built for immediate triage and incident prevention — the default landing view on sign-in
+
+#### 🏠 2. App Inventory
 - **9 Metric Cards** — Total, SPA, Web Apps, API/Daemon, SAML, Single-Tenant, Multi-Tenant, With Secrets, With Certificates
+- **App Detail Panel** — Per-app drawer showing Identity, Lifecycle, Credential Health, and Security Risk information
 - Searchable paginated app table with display name, App ID, type, audience, and credential counts
 - Click any metric card to instantly filter the app list below
 - One-click CSV export of the filtered app list
 
-#### 🛡️ 2. Security Posture
+#### 🛡️ 3. Security Posture
 - **Scoring Engine** — 0–100 score per app evaluating redirect URI hygiene, implicit flow, sign-in audience, and permission risk
 - **Risk Tiers** — Critical, High, Medium, Low/Healthy
 - 7 metric cards including No Owners and Implicit Grant detection
@@ -100,27 +105,27 @@ AppDashboard is a 100% read-only, client-side analytics tool that provides a sin
 - Per-app security report with every check as pass/fail, impact description, and recommendation
 - CSV export of risk, score, issue count, and failed checks
 
-#### 🎯 3. Attack Surface
+#### 🎯 4. Attack Surface
 - **Authentication** vectors — Insecure HTTP redirects, wildcard URIs, implicit flow, localhost in production
 - **Credential** vectors — Broad sign-in audience, expired secrets, missing credentials on confidential apps
 - **Privilege** vectors — Excessive permissions (> 20), SPA apps with application-level roles
 - **Exposure** vectors — APIs without Identifier URI, preauthorized apps bypassing consent
 - Severity levels: Critical, High, Medium, Low — with per-app vector detail dialog and CSV export
 
-#### ⏱️ 4. Secrets & Expiry
+#### ⏱️ 5. Secrets & Expiry
 - **Expiry Buckets** — Expired, ≤ 7 days, ≤ 30 days, ≤ 90 days, Healthy
 - Smart filters — at-risk only (default), group by app, include service principal credentials
 - Detailed table: Application, Source (App vs. SP), Type (Secret vs. Certificate), Status chip, Days Left, Expiry date
 - Direct Azure Portal link per credential for quick remediation
 - CSV export of all credential records
 
-#### 📈 5. App Lifecycle
+#### 📈 6. App Lifecycle
 - **11 Metric Cards** — Total Apps, Avg Age, No Owners, Expired Secrets, Expiring ≤ 30d, Multi-Platform, API Integrations, API Providers, Healthy Secrets, Created (7d), Created (30d)
 - **4 Visual Charts** — Age distribution, monthly creation trend, credential health bars, sign-in audience breakdown
 - Per-app detail dialog with created date, age, type, owners, credentials, and redirect URIs
 - CSV export
 
-#### 🔑 6. Permission Inventory
+#### 🔑 7. Permission Inventory
 - **Two View Modes** — By Permission (unique permissions across tenant) and By App (per-app permission profile)
 - **Risk Classification** — Critical, High, Medium, Low per permission, powered by a built-in known-permissions catalog
 - 6 summary metrics: Unique Permissions, Critical + High Risk, Application Perms, Delegated Perms, Apps With Permissions, Apps With High Risk
@@ -145,24 +150,25 @@ AppDashboard is a 100% read-only, client-side analytics tool that provides a sin
 
 AppTooling is a write-capable browser-based SPA providing nine focused Entra ID management tools. It fills the operational gap between the Azure Portal's form-based UI and scripted automation — for privileged tasks that are too complex for Portal forms yet too infrequent to justify bespoke scripts.
 
-### Nine Focused Tools (Four Administration Areas)
+### Ten Focused Tools (Four Administration Areas)
 
-#### Identity & Consent
-- **Consent Manager** - List all OAuth 2.0 delegated permission grants in the tenant; filter by client or resource service principal; revoke individual grants with a confirmation step; distinguishes admin consent (`AllPrincipals`) from user consent (`Principal`) and surfaces the granting user's UPN. Required: `Directory.ReadWrite.All`
-- **AppRole Assignment Manager** - View app role assignments from both the principal's perspective and the resource's perspective; create new assignments by searching for service principals and selecting from their exposed app roles; delete with confirmation. Required: `AppRoleAssignment.ReadWrite.All`
+#### Identity Management
+- **Consent Manager** - List all OAuth 2.0 delegated permission grants in the tenant; filter by client or resource service principal; revoke individual grants with a confirmation step; distinguishes admin consent (`AllPrincipals`) from user consent (`Principal`) and surfaces the granting user’s UPN. Required: `Directory.ReadWrite.All`
+- **AppRole Assignment Manager** - View app role assignments from both the principal’s perspective and the resource’s perspective; create new assignments by searching for service principals and selecting from their exposed app roles; delete with confirmation. Required: `AppRoleAssignment.ReadWrite.All`
 
-#### Credential Management
-- **Credential & Secret Manager** - Browse all client secrets and certificates across app registrations with colour-coded expiry status (configurable warning threshold); create new secrets with configurable lifetime; new secret values shown exactly once at creation. Required: `Application.ReadWrite.All`
-- **Workload Identity Federation** - Create and manage workload identity federation (WIF) credentials with guided templates for GitHub Actions (branch/environment/PR), Azure DevOps, Kubernetes (service account), and Google Cloud; custom issuers also supported. Required: `Application.ReadWrite.All`
+#### Credentials & Trust
+- **Credential & Secret Manager** - Browse all client secrets and certificates across app registrations with colour-coded expiry status (configurable warning threshold); create new secrets with configurable lifetime; certificates display thumbprint, type, and usage; new secret values shown exactly once at creation. Required: `Application.ReadWrite.All`
+- **Federated Identity Credentials** - Create and manage federated identity credentials with guided templates for GitHub Actions (branch/environment/PR), Azure DevOps, Kubernetes (service account), and Google Cloud; custom issuers also supported. Required: `Application.ReadWrite.All`
 
 #### Policy & Configuration
 - **Claims Mapping Policy Tool** - Full CRUD for `claimsMappingPolicy` objects with built-in templates covering department, employee ID, job title, extension attributes, group claims, and SAML name identifier; JSON editor with schema validation; assign and unassign policies to service principals. Required: `Policy.ReadWrite.ApplicationConfiguration`
-- **Application Manifest Editor** - Load any app registration manifest in a syntax-highlighted JSON editor; edit and save using Graph’s JSON Merge Patch semantics; diff-detects unsaved changes and prompts before navigation. Required: `Application.ReadWrite.All`
+- **Application Manifest Editor** - Load any app registration manifest in a syntax-highlighted JSON editor; edit and save using Graph’s JSON Merge Patch semantics; displays app type chips (Web/SPA/Native/multi-tenant); diff-detects unsaved changes and prompts before navigation. Required: `Application.ReadWrite.All`
 - **Optional Claims Editor** - Configure `optionalClaims` (ID token, access token, SAML2 token) through a structured UI backed by a curated claim catalog; each claim includes a plain-language description, supported token types, and available `additionalProperties`; changes are diffed against saved state and can be reverted. Required: `Application.ReadWrite.All`
 
 #### Inspection & Debugging
-- **Graph Explorer** - Execute arbitrary Microsoft Graph REST calls (GET/POST/PATCH/DELETE) against v1.0 or beta; auto-detects required scopes per endpoint and triggers just-in-time consent; syntax-highlighted JSON response panel; common endpoint suggestions with scope hints. Scope varies — JIT consent per endpoint
-- **JWT Token Decoder** - Paste any JWT for a fully annotated breakdown; auto-detects token type and validity; Token Summary shows type, expiry, subject, audience, issuer, lifetime, and plain-English scope/app-role summary; Claims tab renders every claim with a colour-coded category dot; Header and Raw JSON tabs also available. Decoding is entirely client-side; no Graph calls are made
+- **Graph Explorer** - Execute arbitrary Microsoft Graph REST calls (GET/POST/PATCH/DELETE) against v1.0 or beta; auto-detects required scopes per endpoint and triggers just-in-time consent; syntax-highlighted JSON response panel with status code display; built-in JWT decoder for the current session token; common endpoint suggestions with scope hints. Scope varies — JIT consent per endpoint
+- **JWT Token Decoder** - Paste any JWT for a fully annotated breakdown; auto-detects token type and validity (valid/expired/not-yet-valid); Token Summary shows type, expiry, subject, audience, issuer, lifetime, and plain-English scope/app-role summary; Claims tab renders every claim with a colour-coded category dot (Identity, Authorization, Timing, Application, Security, Tenant, Device) with Microsoft Docs links; Header and Raw JSON tabs also available. Decoding is entirely client-side; no Graph calls are made
+- **Backup & Restore** - Automatic silent backups created before any mutation by the Manifest Editor, Claims Mapping Policy Tool, Consent Manager, and AppRole Assignment Manager; on-demand backups for any app registration or service principal; covers four entity types: App Registration (full manifest snapshot), Service Principal Assignments, OAuth2 Permission Grants, and Claims Mapping Policies; stored in localStorage per tenant (max 2 snapshots per entity with LRU eviction); individual restore with confirmation or deletion; credential backups preserve metadata only — secret values cannot be restored. No additional permissions required
 
 ## 📊 Reporting
 
@@ -227,13 +233,19 @@ AppTooling is a write-capable browser-based SPA providing nine focused Entra ID 
 
 ## 🆕 Recent Enhancements
 
-### AppDashboard - New Tenant Analytics Tool
-- **Six Analytical Dashboards** — Tenant Overview, Security Posture, Attack Surface, Secrets & Expiry, App Lifecycle, and Permission Inventory
+### AppDashboard Updates
+- **Seven Analytical Dashboards** — Alerts Overview, App Inventory, Security Posture, Attack Surface, Secrets & Expiry, App Lifecycle, and Permission Inventory
+- **Alerts Overview** — New action-oriented landing dashboard with 6 KPI cards for immediate triage; click-to-filter into any relevant dashboard view
+- **App Inventory** — Enhanced with a per-app detail panel showing Identity, Lifecycle, Credential Health, and Security Risk information
 - **Security Scoring Engine** — 0–100 per-app scores with Critical/High/Medium/Low risk tiers
 - **Attack Surface Mapping** — Authentication, Credential, Privilege, and Exposure vector categories
 - **Credential Lifecycle Tracking** — Expiry buckets with direct Azure Portal remediation links
 - **Permission Risk Catalog** — Built-in known-permissions database with risk classification
 - **100% Read-Only & Client-Side** — Zero infrastructure, zero write permissions
+
+### AppTooling Updates
+- **Backup & Restore** — New 10th tool; automatic silent backups before every mutation with on-demand backups for any app registration or service principal; covers App Registration manifests, Service Principal Assignments, OAuth2 Permission Grants, and Claims Mapping Policies
+- **Federated Identity Credentials** — Renamed from Workload Identity Federation; now includes status code display in Graph responses and a built-in JWT decoder in Graph Explorer
 
 ### New Testing Capabilities
 - **Confidential Client Auth Debugger** - Simplified web application testing with full Authorization Code Flow support, PKCE, custom API integration, and comprehensive token inspection; requires only redirect URI addition with automatic silent backup for easy restoration

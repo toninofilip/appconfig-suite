@@ -21,7 +21,7 @@ A strictly read-only tool for organizations requiring configuration changes thro
 A read-only cross-tenant analytics tool for IT managers, security teams, and tenant administrators who need comprehensive visibility across every app registration in the tenant — security posture scoring, attack surface mapping, credential health tracking, and permission risk analysis. 100% client-side, zero infrastructure, zero write permissions.
 
 ### 🔨 AppTooling - Entra ID Administration Toolkit
-Nine focused Entra ID management tools for privileged administration tasks that sit between the Azure Portal's form-based UI and scripted automation — for tasks too complex for Portal forms yet too infrequent to justify bespoke scripts. Covers consent audit and revocation, app role assignments, credential management, workload identity federation, claims mapping policies, manifest editing, optional claims configuration, an embedded Graph Explorer, and client-side JWT token decoding.
+Ten focused Entra ID management tools for privileged administration tasks that sit between the Azure Portal's form-based UI and scripted automation — for tasks too complex for Portal forms yet too infrequent to justify bespoke scripts. Covers consent audit and revocation, app role assignments, credential management, federated identity credentials, claims mapping policies, manifest editing, optional claims configuration, an embedded Graph Explorer, client-side JWT token decoding, and automatic backup and restore.
 
 ---
 
@@ -96,7 +96,8 @@ Nine focused Entra ID management tools for privileged administration tasks that 
 - **👀 Deep Insights** - All authentication troubleshooting features with strictly read-only access
 
 ### 📊 AppDashboard - Tenant Analytics
-- **🏠 Tenant Overview** — Full app registration inventory with health scorecard, 9 metric cards, click-to-filter, and CSV export
+- **🚨 Alerts Overview** — Action-oriented landing dashboard with 6 KPI cards for immediate triage: expired credentials, expiring ≤7 days, expiring ≤30 days, critical attack vectors, critical risk apps, and implicit grant enabled apps; click-to-filter into any dashboard view
+- **🏠 App Inventory** — Full app registration inventory with 9 metric cards, per-app detail panel (Identity, Lifecycle, Credential Health, Security Risk), click-to-filter, and CSV export
 - **🛡️ Security Posture** — Per-app security scores (0–100), risk tiers (Critical/High/Medium/Low), and Top 5 Critical Apps panel
 - **🎯 Attack Surface** — Attack vector mapping across Authentication, Credential, Privilege, and Exposure categories
 - **⏱️ Secrets & Expiry** — Credential lifecycle tracking with expiry buckets and direct Azure Portal remediation links
@@ -107,12 +108,13 @@ Nine focused Entra ID management tools for privileged administration tasks that 
 - **🔐 Consent Manager** — Audit and revoke OAuth 2.0 delegated permission grants; distinguishes admin consent from user consent, surfaces granting user's UPN
 - **👥 AppRole Assignment Manager** — View app role assignments from principal and resource perspectives; create and delete assignments with service principal search
 - **🔑 Credential & Secret Manager** — Browse secrets and certificates across app registrations with colour-coded expiry; create new secrets with configurable lifetime
-- **🌐 Workload Identity Federation** — Create and manage federated credentials with guided templates for GitHub Actions, Azure DevOps, Kubernetes, and Google Cloud
+- **🌐 Federated Identity Credentials** — Create and manage federated identity credentials with guided templates for GitHub Actions, Azure DevOps, Kubernetes, and Google Cloud; custom issuers also supported
 - **🗺️ Claims Mapping Policy Tool** — Full CRUD for `claimsMappingPolicy` objects with built-in templates; assign and unassign policies to service principals
 - **📝 Application Manifest Editor** — Syntax-highlighted JSON editor with diff detection and unsaved-change prompts; saves via Graph JSON Merge Patch semantics
 - **⚙️ Optional Claims Editor** — Configure optional claims (ID token, access token, SAML2) through a structured UI backed by a curated claim catalog
 - **🌍 Graph Explorer** — Execute GET/POST/PATCH/DELETE Graph calls against v1.0 or beta; JIT scope consent, syntax-highlighted responses, built-in JWT decoder
 - **🔍 JWT Token Decoder** — Client-side breakdown of any JWT with auto-detected type and validity, claims annotated by category, and Microsoft Docs links
+- **💾 Backup & Restore** — Automatic silent backups before any mutation; on-demand backups for app registrations and service principals; covers manifests, role assignments, OAuth2 grants, and claims mapping policies; individual restore or deletion with confirmation
 
 ---
 
@@ -244,9 +246,10 @@ flowchart LR
 **Need Entra ID administration tools?** → **AppTooling**
 - Consent audit and revocation across the tenant
 - Credential and secret management across app registrations
-- Workload identity federation setup (GitHub Actions, Azure DevOps, Kubernetes)
+- Federated identity credentials setup (GitHub Actions, Azure DevOps, Kubernetes)
 - Claims mapping policies and optional claims configuration
 - Application manifest editing without raw JSON scripting
+- Automatic backup and restore for all mutations
 
 ### Quick Start
 1. Get the AppConfig² Suite on Azure Marketplace: <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=AppConfig%C2%B2&page=1" target="_blank" rel="noopener noreferrer">Open Azure Marketplace</a>
