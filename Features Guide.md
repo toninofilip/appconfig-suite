@@ -263,6 +263,6 @@ AppTooling is a write-capable browser-based SPA providing nine focused Entra ID 
 
 ---
 
-> 💡 Need Help? Contact our support team at support@AppConfig.app for assistance with any feature across the AppConfig² Suite.
+> 💡 Need Help? Contact our support team at support@AppConfig.eu for assistance with any feature across the AppConfig² Suite.
 
 > 🔄 Feature Updates This guide reflects the latest features in the AppConfig² Suite. New capabilities are added regularly based on user feedback and industry requirements.
