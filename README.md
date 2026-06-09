@@ -118,34 +118,17 @@ Ten focused Entra ID management tools for privileged administration tasks that s
 
 ---
 
-## 📸 Suite Screenshots
+## 🌐 See It In Action
 
-<div align="center">
+Visit the live landing pages to explore each tool with current screenshots and feature walkthroughs:
 
-### Application Dashboard
-<img src="https://www.configsquared.com/images/Home.png" alt="Application Dashboard" width="600"/>
-
-### Application Filtering
-<img src="https://www.configsquared.com/images/AppsContent.png" alt="Application Filtering" width="600"/>
-
-### Application Management
-<img src="https://www.configsquared.com/images/AppTester.png" alt="Application Management" width="600"/>
-
-</div>
-
-<details>
-<summary>📱 <strong>View More Screenshots</strong></summary>
-
-### Troubleshooting Authentication as Different User
-<img src="https://www.configsquared.com/images/AuthenticateAs-2.png" alt="Troubleshooting Authentication" width="500"/>
-
-### Advanced Tools Suite
-<img src="https://www.configsquared.com/images/ToolsContent.png" alt="Advanced Tools" width="500"/>
-
-### Integrated Graph Explorer
-<img src="https://www.configsquared.com/images/GraphExplorer.png" alt="Graph Explorer" width="500"/>
-
-</details>
+| Tool | Description | Link |
+|------|-------------|------|
+| **AppConfig² Suite** | Main suite overview | [appconfig.eu](https://appconfig.eu) |
+| **AppConfig** | Full configuration management | [appconfig.eu/appconfig](https://appconfig.eu/appconfig) |
+| **AppTesting** | Read-only analysis & testing | [appconfig.eu/apptesting](https://appconfig.eu/apptesting) |
+| **AppDashboard** | Tenant analytics & security insights | [appconfig.eu/appdashboard](https://appconfig.eu/appdashboard) |
+| **AppTooling** | Entra ID administration toolkit | [appconfig.eu/apptooling](https://appconfig.eu/apptooling) |
 
 ---
 
